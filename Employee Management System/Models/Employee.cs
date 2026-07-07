@@ -1,32 +1,22 @@
 ﻿using System;
 
-class Employee
+namespace EmployeeManagement.Models
 {
-    protected int id;
-    protected string name;
-    protected double salary;
-
-    public Employee(int id, string name, double salary)
+    public abstract class Employee
     {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
-    }
+        public int Id;
+        public string Name;
+        public string Department;
+        public double Salary;
 
-    public virtual void Display()
-    {
-        Console.WriteLine($"ID: {id}");
-        Console.WriteLine($"Name: {name}");
-        Console.WriteLine($"Salary: {salary}");
-    }
+        public Employee(int id, string name, string department, double salary)
+        {
+            Id = id;
+            Name = name;
+            Department = department;
+            Salary = salary;
+        }
 
-    public virtual void Work()
-    {
-        Console.WriteLine($"{name} is working.");
-    }
-
-    public int GetId()
-    {
-        return id;
+        public abstract void Display();
     }
 }

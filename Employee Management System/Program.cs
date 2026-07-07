@@ -1,119 +1,145 @@
 ﻿using System;
+using EmployeeManagement.Models;
+using EmployeeManagement.Services;
 
-class Program
+namespace EmployeeManagement
 {
-    static void Main(string[] args)
+    class Program
     {
-        EmployeeManager manager = new EmployeeManager();
-
-        while (true)
+        static void Main(string[] args)
         {
-            Console.WriteLine("\n===== Employee Management System =====");
-            Console.WriteLine("1. Add Developer");
-            Console.WriteLine("2. Add Manager");
-            Console.WriteLine("3. Add Designer");
-            Console.WriteLine("4. Display Employees");
-            Console.WriteLine("5. Search Employee");
-            Console.WriteLine("6. Remove Employee");
-            Console.WriteLine("7. Exit");
+            EmployeeManager manager = new EmployeeManager();
 
-            Console.Write("Enter Choice: ");
-            int choice = Convert.ToInt32(Console.ReadLine());
-
-            switch (choice)
+            while (true)
             {
-                case 1:
+                Console.Clear();
 
-                    Console.Write("ID: ");
-                    int did = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("=================================");
+                Console.WriteLine(" Employee Management System ");
+                Console.WriteLine("=================================");
+                Console.WriteLine("1. Add Developer");
+                Console.WriteLine("2. Add Manager");
+                Console.WriteLine("3. Show All Employees");
+                Console.WriteLine("4. Show IT Employees");
+                Console.WriteLine("5. Show High Salary Employees");
+                Console.WriteLine("6. Search Employee By ID");
+                Console.WriteLine("7. Show Employee Names");
+                Console.WriteLine("8. Sort Employees By Salary");
+                Console.WriteLine("9. Show Statistics");
+                Console.WriteLine("0. Exit");
+                Console.Write("Enter Choice : ");
 
-                    Console.Write("Name: ");
-                    string dname = Console.ReadLine()!;
+                int choice = Convert.ToInt32(Console.ReadLine());
 
-                    Console.Write("Salary: ");
-                    double dsalary = Convert.ToDouble(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
 
-                    Console.Write("Programming Language: ");
-                    string language = Console.ReadLine()!;
+                        Console.Write("Enter ID : ");
+                        int did = Convert.ToInt32(Console.ReadLine());
 
-                    Employee developer = new Developer(did, dname, dsalary, language);
+                        Console.Write("Enter Name : ");
+                        string dname = Console.ReadLine();
 
-                    manager.AddEmployee(developer);
+                        Console.Write("Enter Department : ");
+                        string ddepartment = Console.ReadLine();
 
-                    break;
+                        Console.Write("Enter Salary : ");
+                        double dsalary = Convert.ToDouble(Console.ReadLine());
 
-                case 2:
+                        Console.Write("Enter Programming Language : ");
+                        string language = Console.ReadLine();
 
-                    Console.Write("ID: ");
-                    int mid = Convert.ToInt32(Console.ReadLine());
+                        Developer developer =
+                            new Developer(did, dname, ddepartment, dsalary, language);
 
-                    Console.Write("Name: ");
-                    string mname = Console.ReadLine()!;
+                        manager.AddEmployee(developer);
 
-                    Console.Write("Salary: ");
-                    double msalary = Convert.ToDouble(Console.ReadLine());
+                        break;
 
-                    Console.Write("Department: ");
-                    string department = Console.ReadLine()!;
+                    case 2:
 
-                    Employee managerObj = new Manager(mid, mname, msalary, department);
+                        Console.Write("Enter ID : ");
+                        int mid = Convert.ToInt32(Console.ReadLine());
 
-                    manager.AddEmployee(managerObj);
+                        Console.Write("Enter Name : ");
+                        string mname = Console.ReadLine();
 
-                    break;
+                        Console.Write("Enter Department : ");
+                        string mdepartment = Console.ReadLine();
 
-                case 3:
+                        Console.Write("Enter Salary : ");
+                        double msalary = Convert.ToDouble(Console.ReadLine());
 
-                    Console.Write("ID: ");
-                    int desid = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Enter Team Size : ");
+                        int teamSize = Convert.ToInt32(Console.ReadLine());
 
-                    Console.Write("Name: ");
-                    string desname = Console.ReadLine()!;
+                        Manager mgr =
+                            new Manager(mid, mname, mdepartment, msalary, teamSize);
 
-                    Console.Write("Salary: ");
-                    double dessalary = Convert.ToDouble(Console.ReadLine());
+                        manager.AddEmployee(mgr);
 
-                    Console.Write("Design Tool: ");
-                    string tool = Console.ReadLine()!;
+                        break;
 
-                    Employee designer = new Designer(desid, desname, dessalary, tool);
+                    case 3:
 
-                    manager.AddEmployee(designer);
+                        manager.ShowAllEmployees();
 
-                    break;
+                        break;
 
-                case 4:
+                    case 4:
 
-                    manager.DisplayEmployees();
+                        manager.ShowITEmployees();
 
-                    break;
+                        break;
 
-                case 5:
+                    case 5:
 
-                    Console.Write("Enter Employee ID: ");
-                    int searchId = Convert.ToInt32(Console.ReadLine());
+                        manager.ShowHighSalaryEmployees();
 
-                    manager.SearchEmployee(searchId);
+                        break;
 
-                    break;
+                    case 6:
 
-                case 6:
+                        Console.Write("Enter Employee ID : ");
+                        int id = Convert.ToInt32(Console.ReadLine());
 
-                    Console.Write("Enter Employee ID: ");
-                    int removeId = Convert.ToInt32(Console.ReadLine());
+                        manager.SearchEmployee(id);
 
-                    manager.RemoveEmployee(removeId);
+                        break;
 
-                    break;
+                    case 7:
 
-                case 7:
+                        manager.ShowEmployeeNames();
 
-                    return;
+                        break;
 
-                default:
+                    case 8:
 
-                    Console.WriteLine("Invalid Choice.");
-                    break;
+                        manager.SortBySalary();
+
+                        break;
+
+                    case 9:
+
+                        manager.ShowStatistics();
+
+                        break;
+
+                    case 0:
+
+                        return;
+
+                    default:
+
+                        Console.WriteLine("Invalid Choice.");
+
+                        break;
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("Press Any Key To Continue...");
+                Console.ReadKey();
             }
         }
     }

@@ -1,23 +1,26 @@
 ﻿using System;
 
-class Manager : Employee
+namespace EmployeeManagement.Models
 {
-    private string department;
-
-    public Manager(int id, string name, double salary, string department)
-        : base(id, name, salary)
+    public class Manager : Employee
     {
-        this.department = department;
-    }
+        public int TeamSize;
 
-    public override void Display()
-    {
-        base.Display();
-        Console.WriteLine($"Department: {department}");
-    }
+        public Manager(int id, string name, string department,
+            double salary, int teamSize)
+            : base(id, name, department, salary)
+        {
+            TeamSize = teamSize;
+        }
 
-    public override void Work()
-    {
-        Console.WriteLine($"{name} is managing {department} department.");
+        public override void Display()
+        {
+            Console.WriteLine("-------------------------");
+            Console.WriteLine($"ID : {Id}");
+            Console.WriteLine($"Name : {Name}");
+            Console.WriteLine($"Department : {Department}");
+            Console.WriteLine($"Salary : {Salary}");
+            Console.WriteLine($"Team Size : {TeamSize}");
+        }
     }
 }

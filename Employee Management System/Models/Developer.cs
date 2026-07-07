@@ -1,23 +1,26 @@
 ﻿using System;
 
-class Developer : Employee
+namespace EmployeeManagement.Models
 {
-    private string language;
-
-    public Developer(int id, string name, double salary, string language)
-        : base(id, name, salary)
+    public class Developer : Employee
     {
-        this.language = language;
-    }
+        public string ProgrammingLanguage;
 
-    public override void Display()
-    {
-        base.Display();
-        Console.WriteLine($"Programming Language: {language}");
-    }
+        public Developer(int id, string name, string department,
+            double salary, string programmingLanguage)
+            : base(id, name, department, salary)
+        {
+            ProgrammingLanguage = programmingLanguage;
+        }
 
-    public override void Work()
-    {
-        Console.WriteLine($"{name} is writing {language} code.");
+        public override void Display()
+        {
+            Console.WriteLine("-------------------------");
+            Console.WriteLine($"ID : {Id}");
+            Console.WriteLine($"Name : {Name}");
+            Console.WriteLine($"Department : {Department}");
+            Console.WriteLine($"Salary : {Salary}");
+            Console.WriteLine($"Language : {ProgrammingLanguage}");
+        }
     }
 }
